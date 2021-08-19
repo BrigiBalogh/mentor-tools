@@ -30,7 +30,10 @@ public class Student {
     private String comment;
 
 
-
-
-
+    public Student(String name, String email, String githubUsername, String comment) {
+        this.name = name;
+        this.email = email;
+        this.githubUsername = githubUsername;
+        this.comment = comment;
+    }
 }

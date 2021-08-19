@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @IsValidDate
 public class CreateTrainingClassCommand {
 
-    @Schema(description = "name of the training class", example = "Kiss István")
+    @Schema(description = "name of the training class", example = "java kezdő")
     @NotBlank(message = "Name can not be empty")
     @Length(max = 255)
     private String name;

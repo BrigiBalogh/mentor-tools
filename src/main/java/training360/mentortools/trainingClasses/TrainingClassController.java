@@ -30,7 +30,7 @@ public class TrainingClassController {
 
 
     @GetMapping("/{id}")
-    @Operation(summary = "get a training classes")
+    @Operation(summary = "get a training class")
     @ApiResponse(responseCode = "201", description = "training class is  found")
     public TrainingClassDto findTrainingClassById(@PathVariable("id") long id) {
         return trainingClassService.findTrainingClassById(id);

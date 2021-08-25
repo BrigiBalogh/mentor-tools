@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import training360.mentortools.registration.Registration;
+import training360.mentortools.syllabuses.Syllabus;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -31,8 +32,11 @@ public class TrainingClass {
     @Column(name = "end_date")
     private LocalDate endDate;
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "trainingClass")
     Set<Registration> registrations;
+
+    @ManyToOne
+    private Syllabus syllabus;
 
 
     public TrainingClass(String name, LocalDate startDate, LocalDate endDate) {

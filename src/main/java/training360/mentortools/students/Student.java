@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import training360.mentortools.registration.Registration;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Set;
 
 @Data
@@ -32,7 +31,7 @@ public class Student {
     private String comment;
 
 
-    @OneToMany(mappedBy = "trainingClass")
+    @OneToMany(mappedBy = "student")
     private Set<Registration> registrations;
 
     public Student(String name, String email, String githubUsername, String comment) {

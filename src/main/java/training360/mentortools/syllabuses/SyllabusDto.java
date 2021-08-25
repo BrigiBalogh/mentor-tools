@@ -8,4 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SyllabusDto {
+
+    private Long id;
+
+    private String name;
 }

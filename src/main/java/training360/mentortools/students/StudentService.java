@@ -6,7 +6,7 @@ import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import training360.mentortools.NotFoundException;
-import training360.mentortools.trainingClasses.*;
+
 
 import java.lang.reflect.Type;
 import java.util.List;

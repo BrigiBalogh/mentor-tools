@@ -62,7 +62,7 @@ public class StudentService {
     }
 
 
-    private Student findStudent(long id) {
+    public Student findStudent(long id) {
         return studentRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(id));
     }

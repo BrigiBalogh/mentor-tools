@@ -13,9 +13,9 @@ import javax.persistence.*;
 @Table(name = "registrations")
 public class Registration {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long registrationId;
+
+    @EmbeddedId
+    private RegistrationId registrationId;
 
     @Enumerated(EnumType.STRING)
     private RegistrationStatus status;
@@ -23,19 +23,26 @@ public class Registration {
     @ManyToOne
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
+    @MapsId("studentId")
     @JoinColumn(name = "student_id")
     private Student student;
 
     @ManyToOne
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
+    @MapsId("trainingClassId")
     @JoinColumn(name = "training_class_id")
     private TrainingClass trainingClass;
 
 
+    public Registration(RegistrationId registrationId,Student student, TrainingClass trainingClass) {
+        this.registrationId = registrationId;
+        this.student = student;
+        this.trainingClass = trainingClass;
+        this.status = RegistrationStatus.ACTIVE;
+    }
 
-
-
-
-
+    public Registration(RegistrationId registrationId) {
+        this.registrationId = registrationId;
+    }
 }

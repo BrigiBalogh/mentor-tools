@@ -3,9 +3,11 @@ package training360.mentortools.trainingClasses;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import training360.mentortools.registration.Registration;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 
 @Data
@@ -28,6 +30,9 @@ public class TrainingClass {
 
     @Column(name = "end_date")
     private LocalDate endDate;
+
+    @OneToMany(mappedBy = "student")
+    Set<Registration> registrations;
 
 
     public TrainingClass(String name, LocalDate startDate, LocalDate endDate) {

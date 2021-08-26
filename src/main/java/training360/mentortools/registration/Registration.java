@@ -15,6 +15,7 @@ public class Registration {
 
 
     @EmbeddedId
+    @Column(name ="registration_id" )
     private RegistrationId registrationId;
 
     @Enumerated(EnumType.STRING)

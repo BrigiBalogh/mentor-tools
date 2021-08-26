@@ -6,6 +6,8 @@ import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import training360.mentortools.NotFoundException;
+import training360.mentortools.syllabuses.Syllabus;
+import training360.mentortools.syllabuses.SyllabusService;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -18,6 +20,8 @@ public class TrainingClassService {
     private ModelMapper mapper;
 
     private TrainingClassRepository trainingClassRepository;
+
+    private SyllabusService syllabusService;
 
     public List<TrainingClassDto> getTrainingClasses() {
 
@@ -42,6 +46,7 @@ public class TrainingClassService {
         trainingClassRepository.save(trainingClass);
         return mapper.map(trainingClass, TrainingClassDto.class);
     }
+
     @Transactional
     public TrainingClassDto updateTrainingClassById(long id, UpdateTrainingClassCommand command) {
 
@@ -56,13 +61,32 @@ public class TrainingClassService {
 
 
     public void deleteTrainingClass(long id) {
-            trainingClassRepository.deleteById(id);
+        trainingClassRepository.deleteById(id);
     }
-
 
 
     public TrainingClass findTrainingClass(long id) {
         return trainingClassRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(id));
+    }
+
+    @Transactional
+    public TrainingClassDto addSyllabusToTrainingClass(
+            Long id, AddSyllabusToTrainingClassCommand command) {
+        TrainingClass trainingClass = findTrainingClass(id);
+
+        Syllabus syllabus = syllabusService.findSyllabus(command.getSyllabusId());
+        syllabus.addTrainingClass(trainingClass);
+        return mapper.map(trainingClass, TrainingClassDto.class);
+    }
+
+    public TrainingClassDto updateTrainingClassWithNewSyllabus(
+            long id, UpdateTrainingClassWithSyllabusCommand command) {
+
+        TrainingClass trainingClass = findTrainingClass(id);
+        Syllabus syllabus = syllabusService.findSyllabus(command.getSyllabusId());
+        trainingClass.setSyllabus(syllabus);
+
+        return mapper.map(trainingClass, TrainingClassDto.class);
     }
 }

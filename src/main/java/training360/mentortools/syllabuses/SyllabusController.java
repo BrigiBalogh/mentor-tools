@@ -65,4 +65,16 @@ public class SyllabusController {
         syllabusService.deleteSyllabus(id);
     }
 
+    @PostMapping("/{id}/modules")
+    @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "Creates a syllabus  with module", description = " New syllabus  has been module.")
+    @ApiResponse(responseCode = "201", description = "syllabus  is  create with module")
+    @ApiResponse(responseCode = "400", description = "syllabus  with module is validation exception ")
+    @ApiResponse(responseCode = "404", description = "not found by id")
+    public SyllabusWithModuleDto addModuleToSyllabus( @PathVariable("id") Long id,
+                                            @Valid @RequestBody AddModuleToSyllabusCommand command){
+
+        return syllabusService.addModuleToSyllabus(id, command);
+    }
+
 }

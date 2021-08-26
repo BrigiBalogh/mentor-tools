@@ -6,6 +6,7 @@ import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import training360.mentortools.NotFoundException;
+import training360.mentortools.modules.ModuleService;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -18,6 +19,7 @@ public class SyllabusService {
     private final ModelMapper mapper;
 
     private final SyllabusRepository syllabusRepository;
+    private  final ModuleService moduleService;
 
 
     public List<SyllabusDto> getSyllabuses() {
@@ -59,5 +61,18 @@ public class SyllabusService {
     public Syllabus findSyllabus(long id) {
         return syllabusRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(id));
+    }
+
+    @Transactional
+    public SyllabusWithModuleDto addModuleToSyllabus(Long id, AddModuleToSyllabusCommand command) {
+        Syllabus syllabus = findSyllabus(id);
+        Module module = moduleService.findModule(command.getModuleId());
+        syllabus.addModule(module);
+        return mapper.map(syllabus, SyllabusWithModuleDto.class);
+    }
+
+    public  SyllabusWithModuleDto findModulesWithSyllabus(Long id) {
+        Syllabus syllabus = findSyllabus(id);
+        return mapper.map(syllabus, SyllabusWithModuleDto.class);
     }
 }

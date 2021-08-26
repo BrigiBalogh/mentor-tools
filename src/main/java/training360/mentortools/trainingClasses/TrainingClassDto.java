@@ -3,6 +3,7 @@ package training360.mentortools.trainingClasses;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import training360.mentortools.syllabuses.SyllabusDto;
 
 import java.time.LocalDateTime;
 
@@ -19,5 +20,7 @@ public class TrainingClassDto {
     private LocalDateTime startDate;
 
     private LocalDateTime endDate;
+
+    private SyllabusDto syllabus;
 
 }

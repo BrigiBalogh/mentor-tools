@@ -20,7 +20,6 @@ public class TrainingClassController {
     private final TrainingClassService trainingClassService;
 
 
-
     @GetMapping
     @Operation(summary = "list all training classes")
     public List<TrainingClassDto> getTrainingClasses() {
@@ -64,6 +63,26 @@ public class TrainingClassController {
 
         trainingClassService.deleteTrainingClass(id);
     }
-}
 
+    @PostMapping("/{id}/syllabuses")
+    @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "Creates a training class with syllabus", description = " New training class has been syllabus.")
+    @ApiResponse(responseCode = "201", description = "training class is  create with syllabus")
+    @ApiResponse(responseCode = "400", description = "training class with syllabus is validation exception ")
+    @ApiResponse(responseCode = "404", description = "not found by id")
+    public TrainingClassDto addSyllabusToTrainingClass(
+            @PathVariable("id") Long id, @Valid @RequestBody AddSyllabusToTrainingClassCommand command) {
+        return trainingClassService.addSyllabusToTrainingClass(id, command);
+
+    }
+
+    @PutMapping("/{id}/syllabus")
+    @Operation(summary = "update a syllabus to training class ", description = " New syllabus to training class has been update.")
+    @ApiResponse(responseCode = "404", description = "trainingClass not found by id")
+    @ApiResponse(responseCode = "400", description = "training class is validation exception ")
+    public TrainingClassDto updateTrainingClassWithNewSyllabus(
+            @PathVariable("id") long id, @Valid @RequestBody UpdateTrainingClassWithSyllabusCommand command) {
+        return trainingClassService.updateTrainingClassWithNewSyllabus(id, command);
+    }
+}
 

@@ -1,8 +1,6 @@
 package training360.mentortools.trainingClasses;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import training360.mentortools.registration.Registration;
 import training360.mentortools.syllabuses.Syllabus;
 
@@ -36,6 +34,9 @@ public class TrainingClass {
     Set<Registration> registrations;
 
     @ManyToOne
+    @JoinColumn(name = "syllabus_id")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private Syllabus syllabus;
 
 
@@ -44,7 +45,4 @@ public class TrainingClass {
         this.startDate = startDate;
         this.endDate = endDate;
     }
-
-
-
 }

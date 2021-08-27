@@ -9,4 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LessonDto {
+
+    private  Long id;
+    private String title;
+    private String url;
 }

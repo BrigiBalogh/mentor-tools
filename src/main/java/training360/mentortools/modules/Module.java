@@ -3,8 +3,10 @@ package training360.mentortools.modules;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import training360.mentortools.lessons.Lesson;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -20,6 +22,9 @@ public class Module {
     private String title;
 
     private String url;
+
+    @OneToMany(mappedBy = "module",cascade = CascadeType.ALL)
+    private Set<Lesson> lessons;
 
 
     public Module(String title, String url) {

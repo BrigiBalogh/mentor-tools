@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import training360.mentortools.NotFoundException;
 import training360.mentortools.modules.ModuleService;
+import training360.mentortools.modules.Module;
 
 import java.lang.reflect.Type;
 import java.util.List;

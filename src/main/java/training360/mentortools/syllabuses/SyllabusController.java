@@ -77,4 +77,9 @@ public class SyllabusController {
         return syllabusService.addModuleToSyllabus(id, command);
     }
 
+    public  SyllabusWithModuleDto findModulesWithSyllabus(@PathVariable("id")Long id) {
+        return syllabusService.findModulesWithSyllabus(id);
+
+    }
+
 }

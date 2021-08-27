@@ -3,6 +3,7 @@ package training360.mentortools.syllabuses;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import training360.mentortools.modules.Module;
 import training360.mentortools.trainingClasses.TrainingClass;
 
 import javax.persistence.*;
@@ -22,13 +23,13 @@ public class Syllabus {
 
     private String name;
 
-    @OneToMany(mappedBy = "syllabuses")
+    @OneToMany(mappedBy = "syllabus")
     public Set<TrainingClass> trainingClasses;
 
     @ManyToMany
     @JoinTable(name = "syllabuses_modules", joinColumns = @JoinColumn(name = "syllabus_id"),
             inverseJoinColumns = @JoinColumn(name = "module_id"))
-    public Set<Module> modules;
+    private Set<Module> modules;
 
 
     public Syllabus(String name) {

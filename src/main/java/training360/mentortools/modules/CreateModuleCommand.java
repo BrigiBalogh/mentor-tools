@@ -16,7 +16,7 @@ public class CreateModuleCommand {
 
     @Schema(description = "title of a module ", example = " JPA")
     @NotBlank(message = "title can not be empty")
-    @Length(max = 255, message = "title's address max length is 255")
+    @Length(max = 255, message = "module's title max length is 255")
     private String title;
 
 

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import training360.mentortools.syllabuses.SyllabusDto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
@@ -17,9 +18,9 @@ public class TrainingClassDto {
 
     private String name;
 
-    private LocalDateTime startDate;
+    private LocalDate startDate;
 
-    private LocalDateTime endDate;
+    private LocalDate endDate;
 
     private SyllabusDto syllabus;
 

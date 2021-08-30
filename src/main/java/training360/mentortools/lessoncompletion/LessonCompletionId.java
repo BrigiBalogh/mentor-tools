@@ -1,4 +1,4 @@
-package training360.mentortools.registration;
+package training360.mentortools.lessoncompletion;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,11 +12,12 @@ import java.io.Serializable;
 @Embeddable
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegistrationId implements Serializable {
+public class LessonCompletionId implements Serializable {
 
     @Column(name = "student_id")
     private Long studentId;
 
-    @Column(name = "training_class_id")
-    private Long trainingClassId;
+    @Column(name = "lesson_id")
+    private Long lessonId;
+
 }

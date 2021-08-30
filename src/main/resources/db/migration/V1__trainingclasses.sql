@@ -3,3 +3,4 @@ create table training_classes (id bigint not null auto_increment,
                   start_date date,
                   end_date date,
                   primary key (id));
+

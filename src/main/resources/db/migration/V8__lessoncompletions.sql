@@ -1,0 +1,10 @@
+create table lessons_completions (student_id bigint not null,
+                                  lesson_id bigint not null,
+                                  task_status varchar(255) not null,
+                                  task_date date,
+                                  commit_url varchar(255),
+                                  video_status varchar(255) not null,
+                                  video_date date,
+                                primary key (student_id, lesson_id),
+                                foreign key (student_id) references students(id),
+                                foreign key (lesson_id) references lessons(id))

@@ -42,14 +42,14 @@ public class TrainingClassControllerRestTemplateIT {
     void init() {
         trainingClass = template.postForObject(URL_TRAINING_CLASS, new CreateTrainingClassCommand(
                         "java kezdő",
-                        LocalDate.of(2021, 5, 10),
-                        LocalDate.of(2021, 7, 10)),
+                        LocalDate.of(2021,5,10),
+                        LocalDate.of(2021,7,10)),
                 TrainingClassDto.class);
 
         trainingClass2 = template.postForObject(URL_TRAINING_CLASS, new CreateTrainingClassCommand(
                         "java haladó",
-                        LocalDate.of(2021, 10, 12),
-                        LocalDate.of(2021, 12, 12)),
+                        LocalDate.of(2021,10,12),
+                        LocalDate.of(2021,12,12)),
                 TrainingClassDto.class);
     }
 
@@ -67,7 +67,7 @@ public class TrainingClassControllerRestTemplateIT {
 
         assertThat(trainingClass)
                 .extracting(TrainingClassDto::getName)
-                .containsExactly("java kezdő ", "java haladó ");
+                .containsExactly("java kezdő","java haladó");
     }
 
 
@@ -78,34 +78,32 @@ public class TrainingClassControllerRestTemplateIT {
         TrainingClassDto result = template
                 .getForObject(URL_TRAINING_CLASS_ID, TrainingClassDto.class, params);
 
-        assertEquals(LocalDate.of(2021, 7, 10), result.getEndDate());
+        assertEquals(LocalDate.of(2021,7,10), result.getEndDate());
     }
 
 
     @Test
     void testCreateTrainingClass() {
 
-
-        assertEquals("java kezdő ", trainingClass.getName());
+        assertEquals("java kezdő", trainingClass.getName());
         assertEquals(LocalDate.of(2021, 5, 10), trainingClass.getStartDate());
         assertEquals(LocalDate.of(2021, 7, 10), trainingClass.getEndDate());
-
     }
 
 
     @Test
     void testUpdateTrainingClass() {
 
-        params.put("id", trainingClass.getId().toString());
-        TrainingClassDto trainingClass = template.exchange(
+        params.put("id", trainingClass2.getId().toString());
+        TrainingClassDto result = template.exchange(
                 URL_TRAINING_CLASS_ID,
                 HttpMethod.PUT,
                 new HttpEntity<>(new UpdateTrainingClassCommand("pyton haladó",
-                        LocalDate.of(2021, 8, 12),
-                        LocalDate.of(2021, 10, 12))),
+                        LocalDate.of(2021,10,12),
+                        LocalDate.of(2021,12,12))),
                 TrainingClassDto.class, params).getBody();
 
-        assertEquals("pyton haladó", trainingClass.getName());
+        assertEquals("pyton haladó", result.getName());
     }
 
 
@@ -146,7 +144,7 @@ public class TrainingClassControllerRestTemplateIT {
         params.put("id", trainingClass2.getId().toString());
         Problem problem = template.postForObject(URL_TRAINING_CLASS, new CreateTrainingClassCommand(
                         "java haladó",
-                        LocalDate.of(0, 0, 0),
+                       null,
                         LocalDate.of(2021, 12, 12)),
                 Problem.class, params);
 

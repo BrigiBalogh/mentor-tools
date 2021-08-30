@@ -5,6 +5,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import training360.mentortools.NotFoundException;
 import training360.mentortools.modules.ModuleService;
 import training360.mentortools.modules.Module;
 
@@ -32,6 +33,10 @@ public class LessonService {
         return mapper.map(lesson,LessonDto.class);
     }
 
+    public  Lesson findById(Long id) {
+        return lessonRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
+    }
+
     @Transactional
     public LessonDto createLesson(Long id, CreateLessonCommand command) {
         Module module = moduleService.findModule(id);
@@ -39,8 +44,6 @@ public class LessonService {
         lessonRepository.save(lesson);
         return mapper.map(lesson, LessonDto.class);
     }
-
-
 
 
     @Transactional
@@ -56,6 +59,7 @@ public class LessonService {
     public void deleteLesson(long id, Long lessonId) {
         lessonRepository.delete(findModuleByIdAndLessonId(lessonId, id));
     }
+
 
 
     private Lesson findModuleByIdAndLessonId(long id, long lessonId) {

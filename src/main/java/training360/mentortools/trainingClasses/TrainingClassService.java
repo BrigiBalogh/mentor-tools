@@ -60,6 +60,7 @@ public class TrainingClassService {
     }
 
 
+
     public void deleteTrainingClass(long id) {
         trainingClassRepository.deleteById(id);
     }

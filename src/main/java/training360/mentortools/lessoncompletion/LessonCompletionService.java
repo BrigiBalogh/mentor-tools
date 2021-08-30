@@ -6,7 +6,6 @@ import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import training360.mentortools.lessons.*;
-import training360.mentortools.modules.Module;
 import training360.mentortools.students.Student;
 import training360.mentortools.students.StudentService;
 

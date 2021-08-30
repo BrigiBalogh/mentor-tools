@@ -6,11 +6,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import training360.mentortools.lessons.CreateLessonCommand;
-import training360.mentortools.lessons.LessonDto;
-import training360.mentortools.lessons.LessonService;
-import training360.mentortools.lessons.UpdateLessonCommand;
-
 import javax.validation.Valid;
 import java.util.List;
 

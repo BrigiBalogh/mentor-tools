@@ -42,13 +42,13 @@ public class StudentControllerRestTemplateIT {
     @BeforeEach
     void init() {
         student = template.postForObject(URL_STUDENT, new CreateStudentCommand(
-                "Kiss István", "kiss.istvan@gmail.com"
-                        ,"Kiss.Istvan", "lemaradt"),
+                        "Kiss István", "kiss.istvan@gmail.com"
+                        , "Kiss.Istvan", "lemaradt"),
                 StudentDto.class);
 
         student1 = template.postForObject(URL_STUDENT, new CreateStudentCommand(
                         "Kiss Zsuzsanna", "kiss.zsuzsa@gmail.com"
-                        ,"Kiss.Zsuzsa", "halad"),
+                        , "Kiss.Zsuzsa", "halad"),
                 StudentDto.class);
 
 
@@ -68,7 +68,7 @@ public class StudentControllerRestTemplateIT {
 
         assertThat(students)
                 .extracting(StudentDto::getName)
-                .containsExactly("Kiss István","Kiss Zsuzsanna");
+                .containsExactly("Kiss István", "Kiss Zsuzsanna");
     }
 
 
@@ -101,12 +101,12 @@ public class StudentControllerRestTemplateIT {
                 HttpMethod.PUT,
                 new HttpEntity<>(new UpdateStudentCommand(
                         "Kiss Zsuzsanna",
-                        "kiss.zsuzsa@gmail.com"
-                        ,"Kiss.box",
+                        "kiss.box@gmail.com"
+                        , "Kiss.Zsuzsa",
                         "lemaradt")),
                 StudentDto.class, params).getBody();
 
-        assertEquals("Kiss.box", result.getEmail());
+        assertEquals("kiss.box@gmail.com", result.getEmail());
         assertEquals("lemaradt", result.getComment());
     }
 
@@ -134,7 +134,7 @@ public class StudentControllerRestTemplateIT {
         params.put("id", student1.getId().toString());
         Problem problem = template.postForObject(URL_STUDENT, new CreateStudentCommand(
                         " ", "kiss.zsuzsa@gmail.com"
-                        ,"Kiss.Zsuzsa", "halad"),
+                        , "Kiss.Zsuzsa", "halad"),
                 Problem.class, params);
 
         assertEquals(Status.BAD_REQUEST, problem.getStatus());
@@ -148,7 +148,7 @@ public class StudentControllerRestTemplateIT {
         params.put("id", student1.getId().toString());
         Problem problem = template.postForObject(URL_STUDENT, new CreateStudentCommand(
                         "Kiss Zsuzsanna", " "
-                        ,"Kiss.Zsuzsa", "halad"),
+                        , "Kiss.Zsuzsa", "halad"),
                 Problem.class, params);
 
         assertEquals(Status.BAD_REQUEST, problem.getStatus());

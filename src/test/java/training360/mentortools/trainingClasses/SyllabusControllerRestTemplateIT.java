@@ -27,9 +27,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class SyllabusControllerRestTemplateIT {
 
 
-
-
-
     @Autowired
     TestRestTemplate template;
 
@@ -64,7 +61,7 @@ public class SyllabusControllerRestTemplateIT {
 
         assertThat(syllabuses)
                 .extracting(SyllabusDto::getName)
-                .containsExactly("java","tesztelő");
+                .containsExactly("java", "tesztelő");
     }
 
 
@@ -124,7 +121,7 @@ public class SyllabusControllerRestTemplateIT {
 
         params.put("id", syllabus.getId().toString());
         Problem problem = template.postForObject(URL_SYLLABUS, new CreateSyllabusCommand(
-                        " "), Problem.class, params);
+                " "), Problem.class, params);
 
         assertEquals(Status.BAD_REQUEST, problem.getStatus());
         assertEquals("Constraint Violation", problem.getTitle());
@@ -136,7 +133,7 @@ public class SyllabusControllerRestTemplateIT {
 
         params.put("id", syllabus.getId().toString());
         Problem problem = template.postForObject(URL_SYLLABUS, new CreateSyllabusCommand(
-                "b".repeat(256)),
+                        "b".repeat(256)),
                 Problem.class, params);
 
         assertEquals(Status.BAD_REQUEST, problem.getStatus());
@@ -151,5 +148,4 @@ public class SyllabusControllerRestTemplateIT {
         assertEquals(Status.NOT_FOUND, problem.getStatus());
         assertEquals("Not found with id '-1'", problem.getDetail());
     }
-
 }

@@ -13,7 +13,7 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 public class CreateLessonCommand {
 
-    @Schema(description = "title of a lesson ", example = " JPA bevezetés")
+    @Schema(description = "title of a lesson ", example = "JPA bevezetés")
     @NotBlank(message = "title can not be empty")
     @Length(max = 255, message = "lesson's title max length is 255")
     private String title;

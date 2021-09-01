@@ -50,8 +50,6 @@ public class StudentControllerRestTemplateIT {
                         "Kiss Zsuzsanna", "kiss.zsuzsa@gmail.com"
                         , "Kiss.Zsuzsa", "halad"),
                 StudentDto.class);
-
-
     }
 
     @Test

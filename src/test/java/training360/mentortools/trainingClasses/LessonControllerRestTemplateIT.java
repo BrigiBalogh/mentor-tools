@@ -18,7 +18,6 @@ import training360.mentortools.modules.CreateModuleCommand;
 import training360.mentortools.modules.ModuleDto;
 
 
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +28,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Sql(statements = {"delete from modules", "delete from lessons"})
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class LessonControllerRestTemplateIT {
-
 
 
     @Autowired

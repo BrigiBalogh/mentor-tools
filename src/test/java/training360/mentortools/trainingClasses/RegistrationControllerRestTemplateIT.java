@@ -22,7 +22,9 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Sql(statements = {"delete from students", "delete from training_classes", "delete from registrations"})
+@Sql(statements = {"alter table registrations drop foreign key if exists fk_training_class ",
+        "alter table registrations drop foreign key if exists fk_student",
+        "delete from students","delete from training_classes","delete from registrations"})
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class RegistrationControllerRestTemplateIT {
 

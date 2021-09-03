@@ -38,11 +38,4 @@ public class LessonCompletion {
     @Embedded
     private Video video;
 
-
-    public LessonCompletion(Student student, Lesson lesson, Task task, Video video) {
-        this.student = student;
-        this.lesson = lesson;
-        this.task = task;
-        this.video = video;
-    }
 }

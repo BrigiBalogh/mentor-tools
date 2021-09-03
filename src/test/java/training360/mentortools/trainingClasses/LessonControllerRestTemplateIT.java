@@ -40,7 +40,6 @@ public class LessonControllerRestTemplateIT {
     static String URL_MODULE = "/api/modules";
     static String URL_LESSON = "/api/modules/{id}/lessons";
     static String URL_LESSON_ID = "/api/modules/{id}/lessons/{lessons-id}";
-
     static Map<String, String> params = new HashMap<>();
 
     @BeforeEach
